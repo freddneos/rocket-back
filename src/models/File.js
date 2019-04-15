@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const File = new mongoose.Schema({
     title: {
-        type: string,
+        type: String,
         required: true
     }, 
     path:{
-        type: string,
+        type: String,
         required: true
     }
 }, {
