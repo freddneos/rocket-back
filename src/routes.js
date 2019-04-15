@@ -2,15 +2,19 @@ const express = require('express')
 const routes = express.Router();
 const multer = require('multer');
 const multerConfig = require('./config/multer');
-const path = require('path');
 
 const BoxController = require('./controllers/BoxController');
 const FileController = require('./controllers/FileController');
 
+const info = {
+    "name":"rocket-back",
+    "version": "1.0",
+    "Stack": "nodejs , express.js ,mongodb (mongoose)",
+    "Dev": "Fredd Bezerra - fredd@neosdev.com.br",
+}
 
-
-routes.get('/teste' , (req,res) => {
-    return res.send(' hello world neos');
+routes.get('/' , (req,res) => {
+    return res.json(info);
 })
 
 
