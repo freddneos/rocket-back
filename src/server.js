@@ -1,5 +1,4 @@
 const path = require('path');
-
 //using express ...
 const express = require('express');
 //schema treatment for mondodb (schemaless)
@@ -14,6 +13,21 @@ mongoose.connect(
     }
 );
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+io.on("connection" , socket =>{
+  console.log('ok');
+  socket.on('connectRoom' , box => {
+    socket.join(box);
+  });
+});
+
+//creating new global attribute to req of routes call ...
+app.use((req,res,next) => {
+  req.io = io;
+  return next();
+})
 //parse json easy with express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,5 +37,5 @@ app.use(require('./routes'));
 
 
 
-app.listen(3333);
+server.listen(3333);
  
