@@ -1,3 +1,5 @@
+const path = require('path');
+
 //using express ...
 const express = require('express');
 //schema treatment for mondodb (schemaless)
@@ -14,9 +16,8 @@ mongoose.connect(
 const app = express();
 //parse json easy with express
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
-
+app.use('/files',express.static(path.resolve(__dirname,'..','tmp')))
 //mvc pattern ...
 app.use(require('./routes'));
 
