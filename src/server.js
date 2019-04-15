@@ -1,3 +1,4 @@
+const cors = require('cors');
 const path = require('path');
 //using express ...
 const express = require('express');
@@ -13,6 +14,9 @@ mongoose.connect(
     }
 );
 const app = express();
+
+app.use(cors());
+
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
@@ -37,5 +41,5 @@ app.use(require('./routes'));
 
 
 
-server.listen(3333);
+server.listen(process.env.PORT || 3333);
  
