@@ -4,7 +4,7 @@ const Box = new mongoose.Schema({
     title: {
         type: string,
         required: true
-    }, files: []
+    }, files: [{ type: mongoose.Schema.Types.ObjectId , ref: "File" }]
 }, {
         timestamps: true
 });
